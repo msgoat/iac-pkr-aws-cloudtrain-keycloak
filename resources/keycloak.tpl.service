@@ -1,0 +1,30 @@
+[Unit]
+Description=Keycloak Open Source Identity and Access Management
+After=syslog.target
+After=network.target
+
+[Service]
+Environment='KEYCLOAK_ADMIN=$KEYCLOAK_ADMIN'
+Environment='KEYCLOAK_ADMIN_PASSWORD=$KEYCLOAK_ADMIN_PASSWORD'
+Type=simple
+Restart=on-failure
+RestartSec=2s
+# Disable timeout logic and wait until process is stopped
+TimeoutStopSec=0
+# SIGTERM signal is used to stop the Java process
+KillSignal=SIGTERM
+# Send the signal only to the JVM rather than its control group
+KillMode=process
+# Java process is never killed
+SendSIGKILL=no
+# When a JVM receives a SIGTERM signal it exits with code 143
+SuccessExitStatus=143
+LimitMEMLOCK=infinity
+LimitNOFILE=65535
+User=keycloak
+Group=keycloak
+WorkingDirectory=/opt/keycloak
+ExecStart=/opt/keycloak/bin/kc.sh --verbose start --spi-connections-jpa-quarkus-migration-strategy=update
+
+[Install]
+WantedBy=multi-user.target
