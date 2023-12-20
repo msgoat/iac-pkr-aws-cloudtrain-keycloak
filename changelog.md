@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [2.0.0] - 2023-12-20
+### Changed
+- Upgraded OS to Amazon Linux 2023
+- Replaced package manager yum with new default dnf
+- Upgraded Keycloak to version 23.0.2
+
 ## [1.0.0] - 2023-10-11
 ### Changed
 - Added CodeBuild build
