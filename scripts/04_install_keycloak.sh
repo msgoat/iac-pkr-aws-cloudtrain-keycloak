@@ -7,6 +7,9 @@
 
 set -ue
 
+echo "Installing some prerequisites for keycloak"
+sudo dnf install -y unzip
+
 export KEYCLOAK_HOME=/opt/keycloak
 export KEYCLOAK_PACKAGE_NAME=keycloak-$KEYCLOAK_VERSION.zip
 export KEYCLOAK_BIN=$KEYCLOAK_HOME
