@@ -22,6 +22,11 @@ sudo mkdir -p $KEYCLOAK_DATA
 echo "Create Keycloak runtime user"
 sudo adduser keycloak --user-group --system
 
+echo "Moving configuration templates in /tmp to retained template folder"
+sudo mkdir -p $KEYCLOAK_HOME/tpl
+sudo mv /tmp/keycloak.conf $KEYCLOAK_HOME/tpl/
+sudo mv /tmp/keycloak.tpl.service $KEYCLOAK_HOME/tpl/
+
 echo "Download and unpack Keycloak package using Keycloak version $KEYCLOAK_VERSION"
 cd /tmp
 curl -L -o $KEYCLOAK_PACKAGE_NAME https://github.com/keycloak/keycloak/releases/download/$KEYCLOAK_VERSION/$KEYCLOAK_PACKAGE_NAME
